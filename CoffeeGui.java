@@ -20,11 +20,6 @@ public class CoffeeGui
 	DocumentListener waterTFListener = new WaterTextFieldListener();
 	DocumentListener coffeeTFListener = new CoffeeTextFieldListener();
 	
-	public static void main(String[] args)
-	{
-		new CoffeeGui().createAndDisplayGui();
-	}
-	
 	public void createAndDisplayGui()
 	{
 		frame = new JFrame("Sir Coffee");
