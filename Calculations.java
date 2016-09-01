@@ -1,7 +1,5 @@
-import java.text.*;
-
 class Calculations
-{	
+{
 	private double coffee;
 	private double water;
 	private String result;
@@ -25,6 +23,4 @@ class Calculations
 	{
 		this.specifiedRatio = specifiedRatio;
 	}
-	
-	
 }
