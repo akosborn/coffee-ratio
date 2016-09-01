@@ -2,10 +2,7 @@ import javax.swing.*;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
 import java.awt.*;
-import java.awt.event.*;
-import javax.swing.text.Document;
 import java.text.*;
-import javax.swing.text.*;
 
 public class CoffeeGui
 {
@@ -19,6 +16,8 @@ public class CoffeeGui
 	NumberFormat numberFormat = NumberFormat.getNumberInstance();
 	DocumentListener waterTFListener = new WaterTextFieldListener();
 	DocumentListener coffeeTFListener = new CoffeeTextFieldListener();
+	String[] ratioStrings = {"1:8 (cold brew)", "1:12 (strong hot brew)", "1:16 (medium hot brew)"};
+	JComboBox ratioList;
 	
 	public void createAndDisplayGui()
 	{
@@ -26,7 +25,7 @@ public class CoffeeGui
 		frame.setSize(800, 500);
 		
 		mainPanel = new JPanel();
-		mainPanel.setLayout(new GridBagLayout());
+		mainPanel.setLayout(new GridBagLayout()); // main panel is based on a grid
 		frame.getContentPane().add(mainPanel);
 		
 		waterPanel = new JPanel();
@@ -57,10 +56,16 @@ public class CoffeeGui
 		coffeeTextField.getDocument().addDocumentListener(coffeeTFListener);
 		coffeePanel.add(coffeeTextField);
 		
-		c.gridx = 1;
+		c.gridx = 2;
 		c.gridy = 0;
 		c.insets = new Insets(0,70,0,0); // sets padding between waterPanel
 		mainPanel.add(coffeePanel, c);
+		
+		ratioList = new JComboBox(ratioStrings);
+		c.gridx = 1;
+		c.gridy = 0;
+		ratioList.setAlignmentX(Component.CENTER_ALIGNMENT);
+		mainPanel.add(ratioList, c);
 		
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
