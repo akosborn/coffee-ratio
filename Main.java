@@ -2,6 +2,7 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		new CoffeeGui().createAndDisplayGui();
+		UI userInterface = new UI();
+		userInterface.launch(UI.class, args);
 	}
 }
