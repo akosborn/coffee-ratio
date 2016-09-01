@@ -17,12 +17,15 @@ import javafx.stage.Stage;
 public class UI extends Application
 {
     String address;
+    TextField coffeeField, waterField;
 
     public void start(Stage primaryStage)
     {
         primaryStage.setTitle("Sir Coffee");
-        TextField coffeeField = new TextField();
+        coffeeField = new TextField();
         coffeeField.setPrefColumnCount(10);
+        coffeeField.textProperty().addListener(new CoffeeTextFieldHandler());
+
         ComboBox<String> ratioOptions = new ComboBox<String>();
         ratioOptions.getItems().addAll(
                 "1:8 (cold brew)",
@@ -33,8 +36,9 @@ public class UI extends Application
         ratioOptions.getSelectionModel().selectedItemProperty().addListener(new ComboBoxEventHandler());
 
 
-        TextField waterField = new TextField();
+        waterField = new TextField();
         waterField.setPrefColumnCount(10);
+        waterField.textProperty().addListener(new WaterTextFieldHandler());
 
         HBox hbox = new HBox(5);
         hbox.setAlignment(Pos.CENTER);
@@ -45,22 +49,39 @@ public class UI extends Application
         primaryStage.show();
     }
 
+    public class CoffeeTextFieldHandler implements ChangeListener<String>
+    {
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
+        {
+            System.out.println(coffeeField.getText());
+        }
+    }
+
     public class ComboBoxEventHandler implements ChangeListener<String>
     {
         @Override
-        public void changed(ObservableValue<? extends String> t, String oldValue, String newValue)
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
         {
-            System.out.print("Ratio set to ");
-            if(t.getValue().equals("1:8 (cold brew)"))
+            if(observable.getValue().equals("1:8 (cold brew)"))
             {
-                System.out.println(newValue);
-            }else if(t.getValue().equals("1:12"))
+
+            }else if(observable.getValue().equals("1:12"))
             {
-                System.out.println(newValue);
-            }else if(t.getValue().equals("1:16"))
+
+            }else if(observable.getValue().equals("1:16"))
             {
-                System.out.println(newValue);
+
             }
+        }
+    }
+
+    public class WaterTextFieldHandler implements ChangeListener<String>
+    {
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
+        {
+            System.out.println(waterField.getText());
         }
     }
 }
