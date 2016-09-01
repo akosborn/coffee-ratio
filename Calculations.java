@@ -7,6 +7,7 @@ class Calculations
 	
 	public String waterToCoffee(double water)
 	{
+	    // System.out.println(water);
 		coffee = water / specifiedRatio;
 		result = String.format("%.2f", coffee );
 		return result;
