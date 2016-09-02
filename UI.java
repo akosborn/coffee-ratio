@@ -4,8 +4,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class UI extends Application
@@ -18,26 +20,38 @@ public class UI extends Application
     public void start(Stage primaryStage)
     {
         primaryStage.setTitle("Sir Coffee");
+
+        Label coffeeLabel = new Label("Coffee (g)");
         coffeeField = new TextField();
         coffeeField.setPrefColumnCount(10);
         coffeeField.textProperty().addListener(coffeeHandler);
+        VBox coffeeBox = new VBox();
+        coffeeBox.setAlignment(Pos.TOP_CENTER);
+        coffeeBox.getChildren().addAll(coffeeLabel,coffeeField);
 
+        Label ratioOptionsLabel = new Label("Ratio");
         ComboBox<String> ratioOptions = new ComboBox<String>();
         ratioOptions.getItems().addAll(
                 "1:8 (cold brew)",
                 "1:12",
                 "1:16"
         );
-
         ratioOptions.getSelectionModel().selectedItemProperty().addListener(new ComboBoxEventHandler());
+        VBox ratioBox = new VBox();
+        ratioBox.getChildren().addAll(ratioOptionsLabel, ratioOptions);
+        ratioBox.setAlignment(Pos.TOP_CENTER);
 
+        Label waterLabel = new Label("Water (mL");
         waterField = new TextField();
         waterField.setPrefColumnCount(10);
         waterField.textProperty().addListener(waterHandler);
+        VBox waterBox = new VBox();
+        waterBox.setAlignment(Pos.TOP_CENTER);
+        waterBox.getChildren().addAll(waterLabel, waterField);
 
         HBox hbox = new HBox(5);
-        hbox.setAlignment(Pos.CENTER);
-        hbox.getChildren().addAll(coffeeField, ratioOptions, waterField);
+        hbox.setAlignment(Pos.TOP_CENTER);
+        hbox.getChildren().addAll(coffeeBox, ratioBox, waterBox);
         calculate = new Calculations();
 
         primaryStage.setScene(new Scene(hbox, 500, 300));
