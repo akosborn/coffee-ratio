@@ -1,4 +1,3 @@
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -79,7 +78,7 @@ public class UI extends Application
         primaryStage.show();
     }
 
-    public class CoffeeTextFieldHandler implements ChangeListener<String>
+    private class CoffeeTextFieldHandler implements ChangeListener<String>
     {
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
@@ -106,7 +105,7 @@ public class UI extends Application
         }
     }
 
-    public class ComboBoxEventHandler implements ChangeListener<String>
+    private class ComboBoxEventHandler implements ChangeListener<String>
     {
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
@@ -129,7 +128,7 @@ public class UI extends Application
     }
 
     // http://asgteach.com/2011/10/javafx-animation-and-binding-simple-countdown-timer-2/
-    public class TimerLabelHandler implements EventHandler<ActionEvent>
+    private class TimerLabelHandler implements EventHandler<ActionEvent>
     {
         public void handle(ActionEvent e)
         {
@@ -146,7 +145,7 @@ public class UI extends Application
         }
     }
 
-    public class WaterTextFieldHandler implements ChangeListener<String>
+    private class WaterTextFieldHandler implements ChangeListener<String>
     {
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
